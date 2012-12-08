@@ -1,18 +1,23 @@
+//Variable declarations
 char buffer[18];
 int red, green, blue;
 int LivingLight = 11;
 int SecurityLight = 6;
 int BedroomLight = 3;
 
+
+//main() of C equivalent in Arduino
 void setup() 
 { 
   Serial.begin(9600);
   Serial.flush();
+  //letting Arduino know which pins are outputs
   pinMode(LivingLight, OUTPUT);
   pinMode(SecurityLight, OUTPUT);
   pinMode(BedroomLight, OUTPUT);
 } 
 
+//This loop is executed till the end of time
 void loop() { 
   if (Serial.available() > 0) {
   int index=0;
@@ -30,6 +35,8 @@ void loop() {
   }
 }
 
+
+//ToDo: Comment on what this function does
 void splitString(char* data) {
   Serial.print("Data sent to Arduino: ");
   Serial.println(data);
@@ -46,6 +53,8 @@ void splitString(char* data) {
   }
   Serial.flush();
 }
+
+//ToDo: Comment on what this function does
 void setLED(char* data) {
   if ((data[0] == 'r') || (data[0] == 'R')) {
     int Ans = strtol(data+1, NULL, 10);
